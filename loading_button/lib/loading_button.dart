@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
 
-
 enum ButtonState { idle, loading, success, error }
 
 class LoadingButton extends StatefulWidget {
@@ -78,7 +77,7 @@ class LoadingButtonState extends State<LoadingButton>
   late Animation<BorderRadius?> _borderAnimation;
 
   final BehaviorSubject<ButtonState> _state =
-  BehaviorSubject<ButtonState>.seeded(ButtonState.idle);
+      BehaviorSubject<ButtonState>.seeded(ButtonState.idle);
 
   @override
   Widget build(BuildContext context) {
@@ -89,15 +88,15 @@ class LoadingButtonState extends State<LoadingButton>
       decoration: BoxDecoration(
         color: widget.successColor ?? theme.primaryColor,
         borderRadius:
-        BorderRadius.all(Radius.circular(_bounceAnimation.value / 2)),
+            BorderRadius.all(Radius.circular(_bounceAnimation.value / 2)),
       ),
       width: _bounceAnimation.value,
       height: _bounceAnimation.value,
       child: _bounceAnimation.value > 20
           ? Icon(
-        widget.successIcon,
-        color: widget.valueColor,
-      )
+              widget.successIcon,
+              color: widget.valueColor,
+            )
           : null,
     );
 
@@ -106,15 +105,15 @@ class LoadingButtonState extends State<LoadingButton>
       decoration: BoxDecoration(
         color: widget.errorColor,
         borderRadius:
-        BorderRadius.all(Radius.circular(_bounceAnimation.value / 2)),
+            BorderRadius.all(Radius.circular(_bounceAnimation.value / 2)),
       ),
       width: _bounceAnimation.value,
       height: _bounceAnimation.value,
       child: _bounceAnimation.value > 20
           ? Icon(
-        widget.failedIcon,
-        color: widget.valueColor,
-      )
+              widget.failedIcon,
+              color: widget.valueColor,
+            )
           : null,
     );
 
@@ -165,8 +164,8 @@ class LoadingButtonState extends State<LoadingButton>
         child: _state.value == ButtonState.error
             ? cross
             : _state.value == ButtonState.success
-            ? check
-            : btn,
+                ? check
+                : btn,
       ),
     );
   }
@@ -196,8 +195,8 @@ class LoadingButtonState extends State<LoadingButton>
 
     _squeezeAnimation =
         Tween<double>(begin: widget.width, end: widget.height).animate(
-          CurvedAnimation(parent: _buttonController, curve: widget.curve),
-        );
+      CurvedAnimation(parent: _buttonController, curve: widget.curve),
+    );
 
     _squeezeAnimation.addListener(() {
       setState(() {});
@@ -208,7 +207,6 @@ class LoadingButtonState extends State<LoadingButton>
         widget.onPressed?.call();
       }
     });
-
 
     _borderAnimation = BorderRadiusTween(
       begin: BorderRadius.circular(widget.borderRadius),
@@ -306,12 +304,12 @@ class RoundedLoadingButtonController {
   VoidCallback? _resetListener;
 
   void _addListeners(
-      VoidCallback startListener,
-      VoidCallback stopListener,
-      VoidCallback successListener,
-      VoidCallback errorListener,
-      VoidCallback resetListener,
-      ) {
+    VoidCallback startListener,
+    VoidCallback stopListener,
+    VoidCallback successListener,
+    VoidCallback errorListener,
+    VoidCallback resetListener,
+  ) {
     _startListener = startListener;
     _stopListener = stopListener;
     _successListener = successListener;
@@ -320,7 +318,7 @@ class RoundedLoadingButtonController {
   }
 
   final BehaviorSubject<ButtonState> _state =
-  BehaviorSubject<ButtonState>.seeded(ButtonState.idle);
+      BehaviorSubject<ButtonState>.seeded(ButtonState.idle);
 
   void dispose() {
     _state.close();
