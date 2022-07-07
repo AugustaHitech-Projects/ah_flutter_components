@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 enum ButtonState { idle, loading, success, error }
 
 class LoadingButton extends StatefulWidget {
-  final RoundedLoadingButtonController controller;
+  final LoadingButtonController controller;
   final VoidCallback? onPressed;
   final Widget child;
   final Color? color;
@@ -296,7 +296,7 @@ class LoadingButtonState extends State<LoadingButton>
   }
 }
 
-class RoundedLoadingButtonController {
+class LoadingButtonController {
   VoidCallback? _startListener;
   VoidCallback? _stopListener;
   VoidCallback? _successListener;
