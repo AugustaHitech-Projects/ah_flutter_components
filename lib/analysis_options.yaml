@@ -11,7 +11,7 @@ analyzer:
     empty_statements: error #Avoid empty statements.
     no_logic_in_create_state: warning #Don’t put any logic in createState.
     prefer_void_to_null: error #Don’t use the type Null where void would work
-    #    use_build_context_synchronously: warning #When a BuildContext is used from a StatefulWidget, the mounted property must be checked after an asynchronous gap.
+    use_build_context_synchronously: warning #When a BuildContext is used from a StatefulWidget, the mounted property must be checked after an asynchronous gap.
     unrelated_type_equality_checks: error
     always_declare_return_types: error
     always_specify_types: warning
@@ -84,7 +84,7 @@ analyzer:
 
 linter:
   rules:
-    use_build_context_synchronously: false #When a BuildContext is used from a StatefulWidget, the mounted property must be checked after an asynchronous gap.
+    use_build_context_synchronously: true #When a BuildContext is used from a StatefulWidget, the mounted property must be checked after an asynchronous gap.
     always_declare_return_types: true
     always_specify_types: true
     avoid_as: true #Avoid using as.
