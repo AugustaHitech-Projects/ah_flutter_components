@@ -1,8 +1,6 @@
 name: loading_button
 description: A new Flutter package for loading button.
 version: 0.0.1
-author: Athira Greejith
-homepage: https://github.com/AugustaHitech-Projects/ah_flutter_components/tree/loading_button
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -14,9 +12,13 @@ dependencies:
   rxdart: ^0.27.4
 
 dev_dependencies:
+  ah_flutter:
+    git:
+      url: https://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@github.com/AugustaHitech-Projects/ah_flutter_components.git
+      ref: main # branch name
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
 
 flutter:
 
