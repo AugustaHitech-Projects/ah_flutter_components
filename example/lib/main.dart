@@ -30,6 +30,7 @@ class MyHomePageState extends State<MyHomePage> {
   final LoadingButtonController _btnController1 = LoadingButtonController();
 
   void _doSomething(bool isSuccess) async {
+    _btnController1.start();
     Timer(const Duration(seconds: 5), () {
       if (isSuccess == true) {
         _btnController1.success();
@@ -66,8 +67,6 @@ class MyHomePageState extends State<MyHomePage> {
         ),
         body: Center(
           child: LoadingButton(
-            successIcon: Icons.thumb_up,
-            failedIcon: Icons.thumb_down,
             controller: _btnController1,
             onPressed: () => _doSomething(false),
             child: const Text('Tap me!', style: TextStyle(color: Colors.white)),
