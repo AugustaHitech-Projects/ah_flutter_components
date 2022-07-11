@@ -1,15 +1,16 @@
 name: api_handler
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
+  dio: ^4.0.6
   flutter:
     sdk: flutter
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
