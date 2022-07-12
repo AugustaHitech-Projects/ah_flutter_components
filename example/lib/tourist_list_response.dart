@@ -15,13 +15,13 @@ class TouristDetail {
   int? id;
   String? name;
   String? email;
-  String? image;
+  String? location;
 
   TouristDetail.fromJson(Map<String, dynamic> json) {
     print(json);
     id = json["id"];
     name = json["tourist_name"];
     email = json["tourist_email"];
-    image = json["tourist_profilepicture"];
+    location = json["tourist_location"];
   }
 }

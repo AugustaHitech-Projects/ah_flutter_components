@@ -5,7 +5,7 @@ class DashboardService {
   ApiHandler apiHandler = ApiHandler();
 
   Future<TouristListResponse> getTouristList() async {
-    dynamic response = await apiHandler.post(
+    dynamic response = await apiHandler.get(
         url: "http://restapi.adequateshop.com/api/Tourist?page=2");
     return TouristListResponse.fromJson(response);
   }

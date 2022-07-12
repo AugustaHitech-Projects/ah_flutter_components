@@ -22,18 +22,18 @@ class DashboardController with ChangeNotifier {
       } else {
         errorMessage = "No Data Found";
       }
-      isLoading = true;
+      isLoading = false;
       notifyListeners();
     } on SocketException {
       print("Socket Exception");
       errorMessage = "No Internet Connection";
-      isLoading = true;
+      isLoading = false;
       notifyListeners();
     } catch (onError) {
       print("catch fetchAppDetails");
       print(onError);
-      errorMessage = onError.toString();
-      isLoading = true;
+      errorMessage = "Catch";
+      isLoading = false;
       notifyListeners();
     }
   }

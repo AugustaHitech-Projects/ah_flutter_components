@@ -18,6 +18,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     _dashboardController = Provider.of<DashboardController>(context);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Dashboard"),
+      ),
       body: buildBodyWidget(),
     );
   }
@@ -37,7 +40,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget touristListField() {
     return ListView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16),
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return itemField(index, context);
@@ -48,41 +51,79 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget itemField(int index, BuildContext context) {
     TouristDetail? item = _dashboardController?.itemList.elementAt(index);
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        height: 250,
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const <BoxShadow>[
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 5.0,
-              ),
-            ]),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Image.network(
-              item?.image ?? "",
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 250,
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 3.0,
             ),
-            Container(
-              color: Colors.black.withOpacity(0.5),
-              child: Text(
-                item?.name ?? "",
-                maxLines: 1,
-                softWrap: true,
-                overflow: TextOverflow.ellipsis,
-              ),
+          ]),
+      child: Row(
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue,
             ),
-          ],
-        ),
+            child: Text(
+              item?.name?.split("").first.toUpperCase() ?? "",
+              maxLines: 1,
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          ),
+          const SizedBox(width: 20),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item?.name
+                          ?.split(" ")
+                          .map((s) => s[0].toUpperCase() + s.substring(1))
+                          .join(" ") ??
+                      "",
+                  maxLines: 1,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4, bottom: 2),
+                  child: Text(
+                    item?.email ?? "",
+                    maxLines: 1,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ),
+                Text(
+                  item?.location ?? "",
+                  maxLines: 1,
+                  softWrap: true,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
