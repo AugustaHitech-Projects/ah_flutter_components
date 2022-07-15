@@ -1,7 +1,7 @@
 class ApiConstant {
   static const String KEY_TOKEN = 'KEY_TOKEN';
-  static String bearerKey = "Bearer ";
-  static String contentType = "content-Type";
-  static String contentTypeValue = "application/json";
-  static String authorization = "Authorization";
+  static const String bearerKey = "Bearer ";
+  static const String contentType = "content-Type";
+  static const String contentTypeValue = "application/json";
+  static const String authorization = "Authorization";
 }
