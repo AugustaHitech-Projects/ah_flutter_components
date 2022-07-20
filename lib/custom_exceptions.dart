@@ -20,7 +20,7 @@ class CustomException implements Exception {
         break;
       case DioErrorType.response:
         errorMessage =
-            ApiErrors.getErrorBasedOnStatusCode(dioError.response?.statusCode);
+            ApiErrors.fromStatusCode(dioError.response?.statusCode);
         break;
       case DioErrorType.other:
         if (dioError.message.contains('SocketException')) {

@@ -80,7 +80,7 @@ class ApiHandler {
     if (response.statusCode == 200 || response.statusCode == 202) {
       return response.data;
     } else {
-      throw ApiErrors.getErrorBasedOnStatusCode(response.statusCode);
+      throw ApiErrors.fromStatusCode(response.statusCode);
     }
   }
 }
