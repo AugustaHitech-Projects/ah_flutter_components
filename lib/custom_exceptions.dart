@@ -1,3 +1,4 @@
+import 'package:api_handler/api_errors.dart';
 import 'package:dio/dio.dart';
 
 class CustomException implements Exception {
@@ -18,7 +19,8 @@ class CustomException implements Exception {
         errorMessage = 'Request send timeout.';
         break;
       case DioErrorType.response:
-        errorMessage = _handleStatusCode(dioError.response?.statusCode);
+        errorMessage =
+            ApiErrors.getErrorBasedOnStatusCode(dioError.response?.statusCode);
         break;
       case DioErrorType.other:
         if (dioError.message.contains('SocketException')) {
@@ -30,31 +32,6 @@ class CustomException implements Exception {
       default:
         errorMessage = 'Something went wrong';
         break;
-    }
-  }
-
-  String _handleStatusCode(int? statusCode) {
-    switch (statusCode) {
-      case 400:
-        return 'Bad request.';
-      case 401:
-        return 'Authentication failed.';
-      case 403:
-        return 'The authenticated user is not allowed to access the specified API endpoint.';
-      case 404:
-        return 'The requested resource does not exist.';
-      case 405:
-        return 'Method not allowed. Please check the Allow header for the allowed HTTP methods.';
-      case 415:
-        return 'Unsupported media type. The requested content type or version number is invalid.';
-      case 422:
-        return 'Data validation failed.';
-      case 429:
-        return 'Too many requests.';
-      case 500:
-        return 'Internal server error.';
-      default:
-        return 'Oops something went wrong!';
     }
   }
 
