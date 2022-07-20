@@ -81,6 +81,7 @@ analyzer:
     close_sinks: error #Close instances of dart.core.Sink..
     avoid_dynamic_calls: warning #Avoid method calls or property accesses on a “dynamic” target.
 #    avoid_print: info
+    cascade_invocations: warning
 
 linter:
   rules:
@@ -116,6 +117,7 @@ linter:
     close_sinks: true #Close instances of dart.core.Sink..
     avoid_dynamic_calls: true #not working properly.
     avoid_print: false
+    cascade_invocations: true
 
 
 
