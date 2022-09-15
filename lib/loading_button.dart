@@ -11,6 +11,7 @@ class LoadingButton extends StatefulWidget {
   final VoidCallback? onPressed;
   final Widget child;
   final Color color;
+  final Color? borderColor;
   final Color valueColor;
   final double height;
   final double borderRadius;
@@ -24,6 +25,7 @@ class LoadingButton extends StatefulWidget {
     this.color = Colors.blue,
     this.valueColor = Colors.white,
     this.height = 50,
+    this.borderColor,
   }) : super(key: key);
 
   @override
@@ -66,23 +68,19 @@ class _LoadingButtonState extends State<LoadingButton> {
       },
     );
 
-    final ButtonTheme btn = ButtonTheme(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius)),
-      padding: const EdgeInsets.all(0),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, widget.height),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-          ),
-          primary: widget.color,
-          elevation: 2,
-          padding: const EdgeInsets.all(0),
+    final Widget btn = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        minimumSize: Size(double.infinity, widget.height),
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: widget.borderColor ?? widget.color),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
-        onPressed: widget.onPressed,
-        child: childStream,
+        backgroundColor: widget.color,
+        elevation: 2,
+        padding: const EdgeInsets.all(0),
       ),
+      onPressed: widget.onPressed,
+      child: childStream,
     );
 
     return SizedBox(
