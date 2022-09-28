@@ -76,6 +76,10 @@ class _LoadingButtonState extends State<LoadingButton> {
           borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         backgroundColor: widget.color,
+        disabledForegroundColor:
+            widget.color.withOpacity(0.5).withOpacity(0.38),
+        disabledBackgroundColor:
+            widget.color.withOpacity(0.5).withOpacity(0.12),
         elevation: 2,
         padding: const EdgeInsets.all(0),
       ),
