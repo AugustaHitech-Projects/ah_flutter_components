@@ -21,14 +21,9 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      if (headerOptions?.handlerError == true) {
-        final errorMessage = CustomException.fromDioError(err).toString();
-        throw errorMessage;
-      } else {
-        rethrow;
-      }
+      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
     } catch (e) {
-      throw e.toString();
+      rethrow;
     }
   }
 
@@ -37,19 +32,13 @@ class ApiHandler {
       Map<String, dynamic>? body,
       HeaderOptions? headerOptions}) async {
     try {
-      Response<dynamic> response =
-          await getDioIns(headerOptions).post(url, data: body);
+      Response<dynamic> response = await getDioIns(headerOptions).post(url, data: body);
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      if (headerOptions?.handlerError == true) {
-        final errorMessage = CustomException.fromDioError(err).toString();
-        throw errorMessage;
-      } else {
-        rethrow;
-      }
+      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
     } catch (e) {
-      throw e.toString();
+      rethrow;
     }
   }
 
@@ -60,14 +49,9 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      if (headerOptions?.handlerError == true) {
-        final errorMessage = CustomException.fromDioError(err).toString();
-        throw errorMessage;
-      } else {
-        rethrow;
-      }
+      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
     } catch (e) {
-      throw e.toString();
+      rethrow;
     }
   }
 
@@ -76,19 +60,13 @@ class ApiHandler {
       Map<String, dynamic>? body,
       HeaderOptions? headerOptions}) async {
     try {
-      Response<dynamic> response =
-          await getDioIns(headerOptions).put(url, data: body);
+      Response<dynamic> response = await getDioIns(headerOptions).put(url, data: body);
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      if (headerOptions?.handlerError == true) {
-        final errorMessage = CustomException.fromDioError(err).toString();
-        throw errorMessage;
-      } else {
-        rethrow;
-      }
+      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
     } catch (e) {
-      throw e.toString();
+      rethrow;
     }
   }
 
