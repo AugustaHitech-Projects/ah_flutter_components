@@ -21,8 +21,12 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      final errorMessage = CustomException.fromDioError(err).toString();
-      throw errorMessage;
+      if (headerOptions?.handlerError == true) {
+        final errorMessage = CustomException.fromDioError(err).toString();
+        throw errorMessage;
+      } else {
+        rethrow;
+      }
     } catch (e) {
       throw e.toString();
     }
@@ -38,8 +42,12 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      final errorMessage = CustomException.fromDioError(err).toString();
-      throw errorMessage;
+      if (headerOptions?.handlerError == true) {
+        final errorMessage = CustomException.fromDioError(err).toString();
+        throw errorMessage;
+      } else {
+        rethrow;
+      }
     } catch (e) {
       throw e.toString();
     }
@@ -52,8 +60,12 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      final errorMessage = CustomException.fromDioError(err).toString();
-      throw errorMessage;
+      if (headerOptions?.handlerError == true) {
+        final errorMessage = CustomException.fromDioError(err).toString();
+        throw errorMessage;
+      } else {
+        rethrow;
+      }
     } catch (e) {
       throw e.toString();
     }
@@ -69,8 +81,12 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      final errorMessage = CustomException.fromDioError(err).toString();
-      throw errorMessage;
+      if (headerOptions?.handlerError == true) {
+        final errorMessage = CustomException.fromDioError(err).toString();
+        throw errorMessage;
+      } else {
+        rethrow;
+      }
     } catch (e) {
       throw e.toString();
     }

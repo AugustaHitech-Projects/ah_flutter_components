@@ -13,8 +13,13 @@ class HeaderOptions {
   /// Http request additional headers need to append other than 'Authorization' and 'Content-Type'
   Map<String, dynamic>? additionalHeaders;
 
+  /// Based on bool, CustomException will be thrown. The default value is 'true'.
+  /// If error to be return without any processing, then 'false' need to be passed.
+  bool handlerError;
+
   HeaderOptions({
     this.requireToken = true,
+    this.handlerError = true,
     this.contentType = ApiConstant.contentTypeValue,
     this.additionalHeaders,
   });

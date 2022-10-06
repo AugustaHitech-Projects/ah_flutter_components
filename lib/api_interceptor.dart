@@ -48,7 +48,7 @@ class ApiInterceptor extends Interceptor {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     logger.e('${err.requestOptions.method} => ${err.requestOptions.uri}'
-        '\nError => ${err.error}'
+        '\nError Code => ${err.response?.statusCode}'
         '\nMessage => ${err.message}');
     return super.onError(err, handler);
   }
