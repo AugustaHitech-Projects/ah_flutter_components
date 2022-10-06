@@ -15,7 +15,7 @@ class HeaderOptions {
 
   HeaderOptions({
     this.requireToken = true,
-    this.contentType = ApiConstant.contentType,
+    this.contentType = ApiConstant.contentTypeValue,
     this.additionalHeaders,
   });
 }
