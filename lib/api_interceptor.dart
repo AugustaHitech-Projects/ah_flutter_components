@@ -32,7 +32,8 @@ class ApiInterceptor extends Interceptor {
       }
     }
     logger.d('${options.method} => ${options.uri}'
-        '\nHeaders => ${options.headers}');
+        '\nHeaders => ${options.headers}'
+        '\nRequest Data => ${options.data}');
     return super.onRequest(options, handler);
   }
 
