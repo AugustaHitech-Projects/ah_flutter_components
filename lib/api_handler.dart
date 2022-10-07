@@ -71,7 +71,7 @@ class ApiHandler {
   }
 
   dynamic _response(Response<dynamic> response) {
-    if (response.statusCode == 200 || response.statusCode == 202) {
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return response.data;
     } else {
       throw ApiErrors.fromStatusCode(response.statusCode);
