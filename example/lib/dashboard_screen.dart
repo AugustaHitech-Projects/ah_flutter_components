@@ -22,6 +22,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title: const Text("Dashboard"),
       ),
       body: buildBodyWidget(),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        _dashboardController?.signIn();
+      },),
     );
   }
 
