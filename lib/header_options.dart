@@ -18,6 +18,7 @@ class HeaderOptions {
   bool handleResponseError;
 
   /// When the token is expired and get unauthorized error, this function will be executed.
+  /// Need to pass function alone with storing token in shared preference
   Function()? refreshTokenFn;
 
   HeaderOptions({
