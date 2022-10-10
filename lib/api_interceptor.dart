@@ -14,16 +14,16 @@ class ApiInterceptor extends Interceptor {
   Logger logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
   @override
-  Future<void> onRequest(
-      RequestOptions options, RequestInterceptorHandler handler) async {
+  Future<void> onRequest(RequestOptions options,
+      RequestInterceptorHandler handler) async {
     if (headerOptions.additionalHeaders?.isNotEmpty == true) {
       options.headers.addAll(headerOptions.additionalHeaders!);
     }
 
     options.headers[ApiConstant.contentType] =
-        headerOptions.contentType.isNotEmpty == true
-            ? headerOptions.contentType
-            : ApiConstant.contentTypeValue;
+    headerOptions.contentType.isNotEmpty == true
+        ? headerOptions.contentType
+        : ApiConstant.contentTypeValue;
 
     if (headerOptions.requireToken == true) {
       String token = await _getToken();
@@ -52,11 +52,9 @@ class ApiInterceptor extends Interceptor {
         '\nError Code => ${error.response?.statusCode}'
         '\nMessage => ${error.message}');
 
-    if (error.response?.statusCode == 401) {
-      if (headerOptions.refreshTokenFn != null) {
-        await headerOptions.refreshTokenFn?.call();
-        return handler.resolve(await ApiHandler().retry(error.response?.requestOptions));
-      }
+    if (error.response?.statusCode == 401 && headerOptions.refreshTokenFn != null) {
+      await headerOptions.refreshTokenFn?.call();
+      return handler.resolve(await ApiHandler().retry(error.response?.requestOptions));
     }
     return handler.next(error);
   }
