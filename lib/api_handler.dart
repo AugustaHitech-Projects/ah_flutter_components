@@ -21,7 +21,7 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
+      throw CustomException.fromDioError(err, headerOptions?.handleResponseError).error;
     } catch (e) {
       rethrow;
     }
@@ -36,7 +36,7 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
+      throw CustomException.fromDioError(err, headerOptions?.handleResponseError).error;
     } catch (e) {
       rethrow;
     }
@@ -49,7 +49,7 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
+      throw CustomException.fromDioError(err, headerOptions?.handleResponseError).error;
     } catch (e) {
       rethrow;
     }
@@ -64,10 +64,22 @@ class ApiHandler {
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
-      throw CustomException.fromDioError(err, headerOptions?.handlerResponseError).error;
+      throw CustomException.fromDioError(err, headerOptions?.handleResponseError).error;
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<Response<dynamic>> retry(RequestOptions? requestOptions) async {
+    final options = Options(
+        method: requestOptions?.method,
+        headers: requestOptions?.headers,
+        responseType: requestOptions?.responseType);
+
+    return Dio().request(requestOptions?.path ?? "",
+        data: requestOptions?.data,
+        queryParameters: requestOptions?.queryParameters,
+        options: options);
   }
 
   dynamic _response(Response<dynamic> response) {

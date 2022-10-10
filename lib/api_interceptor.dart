@@ -1,3 +1,4 @@
+import 'package:api_handler/api_handler.dart';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,11 +47,18 @@ class ApiInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    logger.e('${err.requestOptions.method} => ${err.requestOptions.uri}'
-        '\nError Code => ${err.response?.statusCode}'
-        '\nMessage => ${err.message}');
-    return super.onError(err, handler);
+  Future<void> onError(DioError error, ErrorInterceptorHandler handler) async {
+    logger.e('${error.requestOptions.method} => ${error.requestOptions.uri}'
+        '\nError Code => ${error.response?.statusCode}'
+        '\nMessage => ${error.message}');
+
+    if (error.response?.statusCode == 401) {
+      if (headerOptions.refreshTokenFn != null) {
+        await headerOptions.refreshTokenFn?.call();
+        return handler.resolve(await ApiHandler().retry(error.response?.requestOptions));
+      }
+    }
+    return handler.next(error);
   }
 
   Future<String> _getToken() async {

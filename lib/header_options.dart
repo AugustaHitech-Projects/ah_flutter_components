@@ -15,12 +15,16 @@ class HeaderOptions {
 
   /// Based on bool, CustomException will be thrown. The default value is 'true'.
   /// If error to be return without any processing, then 'false' need to be passed.
-  bool handlerResponseError;
+  bool handleResponseError;
+
+  /// When the token is expired and get unauthorized error, this function will be executed.
+  Function()? refreshTokenFn;
 
   HeaderOptions({
     this.requireToken = true,
-    this.handlerResponseError = true,
+    this.handleResponseError = true,
     this.contentType = ApiConstant.contentTypeValue,
     this.additionalHeaders,
+    this.refreshTokenFn,
   });
 }
