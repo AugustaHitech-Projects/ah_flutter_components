@@ -54,6 +54,10 @@ class ApiInterceptor extends Interceptor {
 
     if (error.response?.statusCode == 401 && headerOptions.refreshTokenFn != null) {
       await headerOptions.refreshTokenFn?.call();
+      String token = await _getToken();
+      if (token.isNotEmpty == true) {
+        error.response?.requestOptions.headers[ApiConstant.authorization] = ApiConstant.bearerKey + token;
+      }
       return handler.resolve(await ApiHandler().retry(error.response?.requestOptions));
     }
     return handler.next(error);
