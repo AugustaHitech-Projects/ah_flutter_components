@@ -70,6 +70,21 @@ class ApiHandler {
     }
   }
 
+  Future<dynamic> uploadFile(
+      {required String url,
+        dynamic? body,
+        HeaderOptions? headerOptions}) async {
+    try {
+      Response<dynamic> response = await getDioIns(headerOptions).put(url, data: body);
+      dynamic responseJson = _response(response);
+      return responseJson;
+    } on DioError catch (err) {
+      throw CustomException.fromDioError(err, headerOptions?.handleResponseError).error;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<Response<dynamic>> retry(RequestOptions? requestOptions) async {
     final options = Options(
         method: requestOptions?.method,
