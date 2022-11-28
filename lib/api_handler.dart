@@ -72,10 +72,11 @@ class ApiHandler {
 
   Future<dynamic> uploadFile(
       {required String url,
-        dynamic? body,
+        required List<int> body,
         HeaderOptions? headerOptions}) async {
     try {
-      Response<dynamic> response = await getDioIns(headerOptions).put(url, data: body);
+      var file = MultipartFile.fromBytes(body).finalize();
+      Response<dynamic> response = await getDioIns(headerOptions).put(url, data: file);
       dynamic responseJson = _response(response);
       return responseJson;
     } on DioError catch (err) {
