@@ -86,6 +86,28 @@ class ApiHandler {
     }
   }
 
+  Future<dynamic> customPostPut(
+      {required String url,
+        bool? isPut,
+        dynamic body,
+        HeaderOptions? headerOptions}) async {
+    ///dynamic body, pass true for put method.. default is post method
+    try {
+      Response<dynamic>? response;
+      if (isPut == true) {
+        response = await getDioIns(headerOptions).put(url, data: body);
+      } else {
+        response = await getDioIns(headerOptions).post(url, data: body);
+      }
+      dynamic responseJson = _response(response);
+      return responseJson;
+    } on DioError catch (err) {
+      throw CustomException.fromDioError(err, headerOptions?.handleResponseError).error;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<Response<dynamic>> retry(RequestOptions? requestOptions) async {
     final options = Options(
         method: requestOptions?.method,
