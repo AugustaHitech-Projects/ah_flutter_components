@@ -1,6 +1,6 @@
-# custom_video_component
+# example
 
-Custom Video player for JS
+A new Flutter project for custom video player.
 
 ## Getting Started
 
