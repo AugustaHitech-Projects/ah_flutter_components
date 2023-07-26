@@ -62,7 +62,7 @@ class _LoadingButtonState extends State<LoadingButton> {
       builder: (BuildContext context, AsyncSnapshot<Object?> snapshot) {
         return snapshot.data == ButtonState.loading
             ? SizedBox(
-                height: widget.height - 8,//to avaoid loader icon shown bigger than button
+                height: widget.height - 8,//to avoid loader icon shown bigger than button
                 width: widget.height - 8,//to avoid stretch along horizontal
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(widget.valueColor),
