@@ -15,6 +15,7 @@ class LoadingButton extends StatefulWidget {
   final Color valueColor;
   final double height;
   final double borderRadius;
+  final double? elevation;
 
   const LoadingButton({
     Key? key,
@@ -26,6 +27,7 @@ class LoadingButton extends StatefulWidget {
     this.valueColor = Colors.white,
     this.height = 50,
     this.borderColor,
+    this.elevation,
   }) : super(key: key);
 
   @override
@@ -62,8 +64,8 @@ class _LoadingButtonState extends State<LoadingButton> {
       builder: (BuildContext context, AsyncSnapshot<Object?> snapshot) {
         return snapshot.data == ButtonState.loading
             ? SizedBox(
-                height: widget.height - 8,//to avoid loader icon shown bigger than button
-                width: widget.height - 8,//to avoid stretch along horizontal
+                height: widget.height - 8, //to avoid loader icon shown bigger than button
+                width: widget.height - 8, //to avoid stretch along horizontal
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(widget.valueColor),
                 ),
@@ -84,7 +86,7 @@ class _LoadingButtonState extends State<LoadingButton> {
             widget.color.withOpacity(0.5).withOpacity(0.38),
         disabledBackgroundColor:
             widget.color.withOpacity(0.5).withOpacity(0.12),
-        elevation: 2,
+        elevation: widget.elevation,
         padding: const EdgeInsets.all(0),
       ),
       onPressed: widget.onPressed,
