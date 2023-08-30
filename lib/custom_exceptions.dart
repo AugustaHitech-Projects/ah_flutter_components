@@ -4,27 +4,28 @@ import 'package:dio/dio.dart';
 class CustomException implements Exception {
   late dynamic error;
 
-  CustomException.fromDioError(DioError dioError, bool? handleResponseError) {
+  CustomException.fromDioError(
+      DioException dioError, bool? handleResponseError) {
     switch (dioError.type) {
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         error = 'Request to the server was cancelled.';
         break;
-      case DioErrorType.connectTimeout:
+      case DioExceptionType.connectionTimeout:
         error = 'Connection timed out.';
         break;
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         error = 'Receiving timeout occurred.';
         break;
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         error = 'Request send timeout.';
         break;
-      case DioErrorType.response:
+      case DioExceptionType.badResponse:
         error = handleResponseError == true
             ? ApiErrors.fromStatusCode(dioError.response?.statusCode)
             : dioError.response?.data;
         break;
-      case DioErrorType.other:
-        if (dioError.message.contains('SocketException')) {
+      case DioExceptionType.unknown:
+        if (dioError.message!.contains('SocketException')) {
           error = 'No Internet.';
           break;
         }
