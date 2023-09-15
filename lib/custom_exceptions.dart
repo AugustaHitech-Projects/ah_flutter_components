@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:api_handler/api_errors.dart';
 import 'package:dio/dio.dart';
 
@@ -25,7 +27,7 @@ class CustomException implements Exception {
             : dioError.response?.data;
         break;
       case DioExceptionType.unknown:
-        if (dioError.message!.contains('SocketException')) {
+        if (dioError.error is SocketException) {
           error = 'No Internet.';
           break;
         }
