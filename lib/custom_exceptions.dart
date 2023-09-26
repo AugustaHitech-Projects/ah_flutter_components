@@ -26,11 +26,10 @@ class CustomException implements Exception {
             ? ApiErrors.fromStatusCode(dioError.response?.statusCode)
             : dioError.response?.data;
         break;
+      case DioExceptionType.connectionError:
+        error = 'No Internet.';
+        break;
       case DioExceptionType.unknown:
-        if (dioError.error is SocketException) {
-          error = 'No Internet.';
-          break;
-        }
         error = 'Unexpected error occurred.';
         break;
       default:
